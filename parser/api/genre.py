@@ -21,7 +21,7 @@ def get_subgenres(json_genre: list[dict], parent_id: int = None) -> list[Genre]:
     return genres
 
 
-async def get_genre(genre_id: int) -> Genre:
+async def get_genre(genre_id: int) -> Genre | None:
     try:
         json = await get_json(f"{DOMAINS.Genre}/{genre_id}")[0]
         return Genre(

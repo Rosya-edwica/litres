@@ -14,7 +14,6 @@ def add_author(author: Author) -> None:
         connection.commit()
         logging.info(f"Успешно сохранили автора: {author.FullName}")
     except BaseException as err:
-        print(err)
         logging.error(f"Ошибка-postgres: {err}")
     finally:
         connection.close()
