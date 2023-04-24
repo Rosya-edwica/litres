@@ -1,0 +1,14 @@
+db:
+  user: "postgres"
+  password: "admin"
+  database: "litres"
+  host: "127.0.0.1"
+  port: 5432
+
+redis:
+  host: "127.0.0.1"
+  port: 6379
+  book_ids_set: "not_parsed"
+
+
+polls: 100

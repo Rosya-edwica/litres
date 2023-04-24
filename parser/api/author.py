@@ -1,6 +1,6 @@
-from api import get_json, prepare_description, DOMAINS
+from api import get_json, prepare_description
+from config import DOMAINS
 from models import Author
-
 
 
 async def get_author(author_id: int) -> Author | None:

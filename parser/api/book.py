@@ -1,4 +1,5 @@
-from api import get_json, prepare_description, DOMAINS
+from api import get_json, prepare_description
+from config import DOMAINS
 from models import *
 
 
@@ -31,7 +32,7 @@ def get_book(json: dict = None) -> Book:
         Rating=json["rating"]["rated_avg"],
         Year=int(json["date_written_at"].split("-")[0]) if json["date_written_at"] else None,
         Pages=json["additional_info"]["current_pages_or_seconds"],
-        IsAudio=False if json["art_type"] == 0 else True
+        IsAudio=True if json["art_type"] == 1 else False
         
     )
     except BaseException:

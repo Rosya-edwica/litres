@@ -1,12 +1,13 @@
-import psycopg2
+from config import PostgresConfig
+import asyncpg
 
 
-def connect():
-    connection = psycopg2.connect(
-        database="litres",
-        user="postgres",
-        password="admin",
-        host="127.0.0.1",
-        port=5432
+async def connect():
+    connection = await asyncpg.connect(
+        database=PostgresConfig.Database,
+        user=PostgresConfig.User,
+        password=PostgresConfig.Pass,
+        host=PostgresConfig.Host,
+        port=PostgresConfig.Port
     )
     return connection

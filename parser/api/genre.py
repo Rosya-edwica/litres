@@ -1,6 +1,8 @@
-from models import Genre
-from api import get_json, DOMAINS
 import asyncio
+
+from models import Genre
+from api import get_json
+from config import DOMAINS
 
 async def get_all_genres() -> list[Genre]:
     json = await get_json(DOMAINS.Genre)
@@ -23,14 +25,17 @@ def get_subgenres(json_genre: list[dict], parent_id: int = None) -> list[Genre]:
 
 async def get_genre(genre_id: int) -> Genre | None:
     try:
-        json = await get_json(f"{DOMAINS.Genre}/{genre_id}")[0]
+        json = await get_json(f"{DOMAINS.Genre}/{genre_id}")
         return Genre(
-        Id=json["id"],
-        Title=json["name"],
+        Id=json[0]["id"],
+        Title=json[0]["name"],
         ParentId=None,
-        Url=DOMAINS.Base + json["url"],
-        BooksCount=json["arts_count"]
+        Url=DOMAINS.Base + json[0]["url"],
+        BooksCount=json[0]["arts_count"]
     )
-    except BaseException:
+    except RuntimeWarning as err:
+        print(f"ERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR{err}, {genre_id}")
         await asyncio.sleep(0)
         return None
+    finally:
+        await asyncio.sleep(0)
