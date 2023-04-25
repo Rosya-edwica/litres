@@ -31,7 +31,7 @@ CREATE TABLE book(
     min_age integer not null,
     rating float not null,
     year integer not null,
-    pages integer not null,
+    pages integer,
     image varchar(255),
     url varchar(255) not null,
 
