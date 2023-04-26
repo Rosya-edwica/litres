@@ -33,8 +33,7 @@ async def get_genre(genre_id: int) -> Genre | None:
         Url=DOMAINS.Base + json[0]["url"],
         BooksCount=json[0]["arts_count"]
     )
-    except RuntimeWarning as err:
-        print(f"ERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR{err}, {genre_id}")
+    except BaseException:
         await asyncio.sleep(0)
         return None
     finally:
